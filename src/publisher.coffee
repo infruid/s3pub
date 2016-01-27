@@ -18,7 +18,7 @@ module.exports = class Publisher
     }
     @s3 = new AWS.S3()
 
-  publish: ({sourcePath, destinationBucket, destinationPath, s3Options}) ->
+  publish: ({sourcePath, destinationBucket, destinationPath, cacheControl s3Options}) ->
     sourcePath = resolve sourcePath
     compressedPath = resolve sourcePath, randomKey(16, "base64url")
     tempPath = randomKey(16, "base64url")
@@ -144,7 +144,7 @@ module.exports = class Publisher
         params =
           Bucket: destinationBucket
           Key: destinationFile
-          CacheControl: "max-age=0"
+          CacheControl: "max-age="+cacheControl
           ContentType: mime.lookup(sourceFile)
           ContentEncoding: "gzip"
           ContentLength: fs.statSync(compressedFile).size

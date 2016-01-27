@@ -1,5 +1,5 @@
 #!/usr/bin/env coffee
-[interpreter, script, accessKeyId, secretAccessKey, region, sourcePath, destinationBucket, destinationPath] = process.argv
+[interpreter, script, accessKeyId, secretAccessKey, region, sourcePath, destinationBucket, destinationPath, cacheControl] = process.argv
 
 {parse} = require "c50n"
 {read} = require "fairmont"
@@ -30,6 +30,7 @@ else
     sourcePath
     destinationBucket
     destinationPath
+    cacheControl
     s3Options: {}
   }
 
