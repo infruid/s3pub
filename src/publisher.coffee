@@ -36,7 +36,7 @@ module.exports = class Publisher
             paths = glob(sourcePath, "**/*")
             all(
               for path in paths
-                @upload({sourcePath, sourceFile: path, compressedPath, destinationBucket, destinationPath, s3Options})
+                @upload({sourcePath, sourceFile: path, compressedPath, destinationBucket, destinationPath, cacheControl,s3Options})
             )
             .finally =>
               @deleteAll({destinationBucket, destinationPath: tempPath})
